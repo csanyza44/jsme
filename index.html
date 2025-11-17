@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSME Molecule Editor</title>
+  <script type="text/javascript" src="https://unpkg.com/jsme-editor@latest/jsme.nocache.js"></script>
+  <style>
+    html, body { margin:0; padding:0; height:100%; font-family: Arial, sans-serif; }
+    #jsmeContainer { width:100%; height:500px; border:1px solid #ccc; margin-bottom:10px; }
+    #controls { margin:10px 0; }
+  </style>
+</head>
+<body>
+
+<h2>Draw Your Molecule</h2>
+<div id="jsmeContainer"></div>
+<div id="controls">
+  <button onclick="submitMolecule()">Submit Molecule</button>
+  <div id="result" style="margin-top:10px;"></div>
+</div>
+
+<script type="text/javascript">
+  // Initialize JSME
+  var jsmeApplet = new JSApplet.JSME("jsmeContainer", "100%", "500px");
+
+  // Example correct answer (water)
+  const correctSmiles = "O";
+
+  function submitMolecule() {
+    var smiles = jsmeApplet.smiles();
+    console.log("Student SMILES:", smiles);
+
+    // Simple check
+    if(smiles === correctSmiles) {
+      document.getElementById("result").innerHTML = "✅ Correct!";
+    } else {
+      document.getElementById("result").innerHTML = "❌ Try again!";
+    }
+  }
+</script>
+
+</body>
+</html>
